@@ -29,7 +29,7 @@ class AvatoTestCommand extends Command
     private AppStyleInterface $io;
 
     public function __construct(
-        private HttpClientInterface $httpClient,
+        private HttpClientInterface $http_client,
         private RouterInterface $router,
         private ValidatorInterface $validator,
         private ManagerRegistry $doctrine,
@@ -54,7 +54,7 @@ class AvatoTestCommand extends Command
     {
         $this->io = $io = new AppStyle($input, $output, $this->serializer);
 
-        $entityManager = $this->doctrine->getManager();
+        $entity_manager = $this->doctrine->getManager();
 
         $requests = $input->getOption('requests');
 
@@ -79,8 +79,8 @@ class AvatoTestCommand extends Command
                     ->setAttempts($attempts);
 
                 if (!count($errors = $this->validator->validate($result))) {
-                    $entityManager->persist($result);
-                    $entityManager->flush();
+                    $entity_manager->persist($result);
+                    $entity_manager->flush();
 
                     $io->object($result, ['groups' => 'show']);
 
@@ -102,7 +102,7 @@ class AvatoTestCommand extends Command
 
     protected function requestHash(string $string)
     {
-        $response = $this->httpClient->request(
+        $response = $this->http_client->request(
             Request::METHOD_GET,
             $this->router->generate(
                 'hash',
@@ -112,9 +112,9 @@ class AvatoTestCommand extends Command
         );
 
         if ($response->getStatusCode() == 429) {
-            $ratelimitTimestamp = $response->getHeaders(false)['x-ratelimit-retry-after'][0];
-            $this->io->info('waiting, due rate limit, until ' . date('H:i:s', $ratelimitTimestamp));
-            time_sleep_until($ratelimitTimestamp);
+            $ratelimit_timestamp = $response->getHeaders(false)['x-ratelimit-retry-after'][0];
+            $this->io->info('waiting, due rate limit, until ' . date('H:i:s', $ratelimit_timestamp));
+            time_sleep_until($ratelimit_timestamp);
 
             return $this->requestHash($string);
         }

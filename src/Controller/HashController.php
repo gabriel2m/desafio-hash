@@ -34,7 +34,7 @@ class HashController extends AbstractController
     public function hash(
         Request $request,
         RateLimiterFactory $hashLimiter,
-        HashGeneratorInterface $hashGenerator,
+        HashGeneratorInterface $hash_generator,
         string $string
     ): JsonResponse {
         $limiter = $hashLimiter->create($request->getClientIp());
@@ -55,7 +55,7 @@ class HashController extends AbstractController
             );
 
         return $this->json(
-            $hashGenerator->brTecParHash($string),
+            $hash_generator->brTecParHash($string),
             Response::HTTP_OK,
             $headers
         );

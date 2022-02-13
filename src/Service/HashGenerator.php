@@ -9,7 +9,7 @@ class HashGenerator implements HashGeneratorInterface
     /**
      * Returns a array with "hash", "key" and "attempts"
      * 
-     * Concats the input string and a random 8 characters string (called "key") and calculates its md5 hash,
+     * Concats the input string and a random 8 length string (called "key") and calculates its md5 hash,
      * if this hash starts with "0000" returns ["hash", "key" and "attempts"]
      * otherwise try again with a new "key"
      */
