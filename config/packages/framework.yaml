@@ -17,6 +17,10 @@ framework:
     php_errors:
         log: true
 
+    serializer:
+        default_context:
+            datetime_format: 'Y-m-d H:i:s'
+
 when@test:
     framework:
         test: true
