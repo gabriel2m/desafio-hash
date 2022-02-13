@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\RateLimiter\RateLimiterFactory;
 
 /**
@@ -38,11 +39,25 @@ class HashController extends AbstractController
     ): JsonResponse {
         $limiter = $hashLimiter->create($request->getClientIp());
 
-        if (false === $limiter->consume()->isAccepted())
-            return $this->json(['message' => "Too many Attempts"], 429);
+        $limit = $limiter->consume();
+
+        $headers = [
+            'X-RateLimit-Remaining' => $limit->getRemainingTokens(),
+            'X-RateLimit-Retry-After' => $limit->getRetryAfter()->getTimestamp(),
+            'X-RateLimit-Limit' => $limit->getLimit(),
+        ];
+
+        if (false === $limit->isAccepted())
+            return $this->json(
+                ['message' => "Too many Attempts"],
+                Response::HTTP_TOO_MANY_REQUESTS,
+                $headers
+            );
 
         return $this->json(
-            $hashGenerator->brTecParHash($string)
+            $hashGenerator->brTecParHash($string),
+            Response::HTTP_OK,
+            $headers
         );
     }
 }
