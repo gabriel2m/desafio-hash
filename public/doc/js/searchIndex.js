@@ -331,6 +331,16 @@ Search.appendIndex(
             "summary": "Returns\u0020a\u0020array\u0020with\u0020\u0022hash\u0022,\u0020\u0022key\u0022\u0020and\u0020\u0022attempts\u0022",
             "url": "classes/App-Service-HashGeneratorInterface.html#method_brTecParHash"
         },                {
+            "fqsen": "\\App\\Controller\\DocumentationController",
+            "name": "DocumentationController",
+            "summary": "",
+            "url": "classes/App-Controller-DocumentationController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\DocumentationController\u003A\u003Aindex\u0028\u0029",
+            "name": "index",
+            "summary": "",
+            "url": "classes/App-Controller-DocumentationController.html#method_index"
+        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",

@@ -4,7 +4,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="https://www.phpdoc.org"
 >
-    <title>Desafio Hash</title>
+    <title>Hash Challenge</title>
     <paths>
         <output>public/doc</output>
     </paths>
