@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <style>
+        .wrapper { margin: 1em auto; max-width: 1200px; width: 95%; font: 18px/1.5 sans-serif; }
+        .wrapper code { background: #d3d3d3; padding: 3px 6px; }
+    </style>
+{% endblock %}
+
+{% block title %}Desafio Hash{% endblock %}
+
+{% block body %}
+    <div class="wrapper">
+
+        {{ readme|markdown_to_html }}
+
+    </div>
+{% endblock %}
