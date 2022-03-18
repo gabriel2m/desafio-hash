@@ -59,4 +59,3 @@ Considerations
   * I chose to use PHP 8.1 and Symfony 6 to agilize the developing by using her new features
   * All the packages used are the ones indicated in the Symfony documentation
   * Solid principles in Symfony 6 are much way easier since it tries to embrace them in its architecture
-  * It was a pleasure develop this software, thanks, by the "Hash Challenge" and the opportunity, Brasil TecPar, Datum and Ana.
